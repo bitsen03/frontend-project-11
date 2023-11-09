@@ -1,0 +1,14 @@
+{
+  "name": "frontend-project-11",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/bitsen03/frontend-project-11/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/bitsen03/frontend-project-11/actions)",
+  "main": "qwe.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vitaliy",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.2"
+  }
+}
