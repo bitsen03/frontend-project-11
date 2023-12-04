@@ -1,4 +1,6 @@
 import  './styles.scss';
 import  'bootstrap';
+import validator from './help/validator.js';
 
-console.log('Hello, World!');
+
+ validator()
