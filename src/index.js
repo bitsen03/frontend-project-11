@@ -1,6 +1,5 @@
 import  './styles.scss';
 import  'bootstrap';
-import validator from './help/validator.js';
+import logic from './help/logic.js';
 
-
- validator()
+logic()
