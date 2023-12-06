@@ -2,7 +2,6 @@ import * as yup from 'yup';
 import onChange from 'on-change';
 import render from './render.js';
 import validate from './validate.js'
-import axios from 'axios'
 
 
 const validationSchema = yup
@@ -14,6 +13,7 @@ const items =  {
   input: document.querySelector('#url-input'),
   feedback: document.querySelector('.feedback'),
   example: document.querySelector('p > .mt-2 mb-0'),
+  container: document.querySelector('qwe')
 }
 
 export default async () => {
@@ -31,25 +31,13 @@ export default async () => {
     e.preventDefault();
     const url =  items.input.value;
     await validate(url, watchedState, validationSchema);
-    axios.get('https://ru.hexlet.io/lessons.rss')
-    .then((response) => {
-      console.log(response.data);
+
+    fetch(`https://allorigins.hexlet.app/get?url=${('https://ru.hexlet.io/lessons.rss')}`)
+    .then(response => {
+      if (response.ok) return response.json()
+      throw new Error('Network response was not ok.')
     })
-    .catch((error) => {
-      if (error.response) {
-        // Запрос выполнен, сервер ответил статус-кодом
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // Запрос сделан, но ответ не получен
-        console.log(error.request);
-      } else {
-        // Что-то пошло не так при настройке запроса
-        console.log('Ошибка', error.message);
-      }
-      console.log(error.config);
-    });
+    .then(data => console.log(data.contents));
   });
 };
   

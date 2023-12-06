@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Новые уроки на Хекслете</title>
+    <description>Практические уроки по программированию</description>
+    <link>https://ru.hexlet.io/</link>
+    <webMaster>info@hexlet.io</webMaster>
+    <item>
+      <title>Как эффективно работать со стримами / Java: Стримы</title>
+      <guid isPermaLink="false">4506</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/stream-rules/theory_unit</link>
+      <description>Цель: Изучить рекомендации по работе со стримами</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Поиск элементов (find) / Java: Стримы</title>
+      <guid isPermaLink="false">4505</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/find/theory_unit</link>
+      <description>Цель: Познакомитсья с поиском отдельных элементов и типом Optional</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Выравнивание данных (Flat Map) / Java: Стримы</title>
+      <guid isPermaLink="false">4504</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/flat-map/theory_unit</link>
+      <description>Цель: Познакомиться с курсом</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Стандартные методы свертки (Collectors) / Java: Стримы</title>
+      <guid isPermaLink="false">4503</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/collectors/theory_unit</link>
+      <description>Цель: Познакомиться с классом Collectors, который содержит множество полезных методов агрегации данных</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Цепочка вызовов / Java: Стримы</title>
+      <guid isPermaLink="false">4502</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/method-chain/theory_unit</link>
+      <description>Цель: Научиться разбивать сложные операции на набор простых образуя последовательную обработку стримов</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Свертка (reduce) / Java: Стримы</title>
+      <guid isPermaLink="false">4501</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/reduce/theory_unit</link>
+      <description>Цель: Познакомиться с курсом</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Фильтрация / Java: Стримы</title>
+      <guid isPermaLink="false">4500</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/filter/theory_unit</link>
+      <description>Цель: Познакомиться с курсом</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Отображение (map) / Java: Стримы</title>
+      <guid isPermaLink="false">4499</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/map/theory_unit</link>
+      <description>Цель: Познакомиться с курсом</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Декларативное программирование / Java: Стримы</title>
+      <guid isPermaLink="false">4498</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/declarative-programming/theory_unit</link>
+      <description>Цель: Познакомиться с курсом</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Введение / Java: Стримы</title>
+      <guid isPermaLink="false">4497</guid>
+      <link>https://ru.hexlet.io/courses/java_streams/lessons/intro/theory_unit</link>
+      <description>Цель: Познакомиться с курсом</description>
+      <pubDate>Tue, 05 Dec 2023 12:40:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>Wildcard для спецификации подтипов / Java: Дженерики</title>
+      <guid isPermaLink="false">4496</guid>
+      <link>https://ru.hexlet.io/courses/java_generics/lessons/wildcard/theory_unit</link>
+      <description>Цель: Научиться ограничивать типы дженериков конкретными подтипами и надтипами</description>
+      <pubDate>Tue, 05 Dec 2023 07:03:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>Статические обобщенные методы / Java: Дженерики</title>
+      <guid isPermaLink="false">4495</guid>
+      <link>https://ru.hexlet.io/courses/java_generics/lessons/static-methods/theory_unit</link>
+      <description>Цель: Научиться создавать статические методы-дженерики</description>
+      <pubDate>Thu, 30 Nov 2023 10:46:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>Обобщенные методы / Java: Дженерики</title>
+      <guid isPermaLink="false">4494</guid>
+      <link>https://ru.hexlet.io/courses/java_generics/lessons/methods/theory_unit</link>
+      <description>Цель: Научиться работать с обобщенными методами и создавать их самим</description>
+      <pubDate>Thu, 30 Nov 2023 10:46:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>Параметрический полиморфизм / Java: Дженерики</title>
+      <guid isPermaLink="false">4493</guid>
+      <link>https://ru.hexlet.io/courses/java_generics/lessons/parametric-polymorphysm/theory_unit</link>
+      <description>Цель: Познакомиться с концепцией обобщенного программирования</description>
+      <pubDate>Thu, 30 Nov 2023 10:46:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>Реализация дженериков / Java: Дженерики</title>
+      <guid isPermaLink="false">4492</guid>
+      <link>https://ru.hexlet.io/courses/java_generics/lessons/classes/theory_unit</link>
+      <description>Цель: Научиться создавать собственные дженерики с одним и многими параметрами типов</description>
+      <pubDate>Thu, 30 Nov 2023 10:46:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>Примеры встроенных дженериков / Java: Дженерики</title>
+      <guid isPermaLink="false">4491</guid>
+      <link>https://ru.hexlet.io/courses/java_generics/lessons/examples/theory_unit</link>
+      <description>Цель: Вспомнить и закрепить работу дженериков на примере списков и функциональных интерфейсов</description>
+      <pubDate>Thu, 30 Nov 2023 10:46:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>Как работают дженирики / Java: Дженерики</title>
+      <guid isPermaLink="false">4490</guid>
+      <link>https://ru.hexlet.io/courses/java_generics/lessons/how-it-works/theory_unit</link>
+      <description>Цель: Познакомиться с проблемой дублирования и отсутствия типобезопасности без дженериков. Узнать как дженерики решают эту проблему</description>
+      <pubDate>Thu, 30 Nov 2023 10:46:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>Введение в курс / Java: Дженерики</title>
+      <guid isPermaLink="false">4489</guid>
+      <link>https://ru.hexlet.io/courses/java_generics/lessons/intro/theory_unit</link>
+      <description>Цель: Познакомиться с курсом и его целями</description>
+      <pubDate>Thu, 30 Nov 2023 10:46:24 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
