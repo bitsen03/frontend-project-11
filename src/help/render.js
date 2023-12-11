@@ -10,7 +10,35 @@ await i18nextInstance.init({
   text,
 });
 
-export default (state, items) => {
+
+
+const outPut = (items) => {
+  
+const titles = items.post.titles;
+const links = items.post.links;
+const newUl = document.createElement('ul');
+newUl.classList.add("ist-group", "border-0", "rounded-0")
+
+for (let i = 0; i < titles.length; i += 1 ){
+const li = document.createElement('li')
+li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start", "border-0", "border-end-0")
+const a = document.createElement('a')
+a.textContent = titles[i].innerHTML
+a.setAttribute('href', links[i].innerHTML)
+a.classList.add("fw-bold")
+li.appendChild(a)
+
+newUl.appendChild(li)
+}
+
+items.container.appendChild(newUl)
+
+
+}
+
+export default async (state, items) => {
+  // outPut(items)
+  console.log(items.post)
     const item = items.feedback;
     resetStyle(item);
       if (state.isValid === 'isValid') {
@@ -19,6 +47,7 @@ export default (state, items) => {
         items.input.value = '';
         items.input.focus()
       } else {
+    
         item.classList.add("text-danger");
         items.input.classList.add('is-invalid')
       }
