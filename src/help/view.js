@@ -7,5 +7,7 @@ const unValid = (watchedState) => {
   const haveThisUrl = (watchedState) => {
     watchedState.isValid = 'haveThisUrl';
   }
-  
-  export {unValid, isValid, haveThisUrl}
+const badConection = (watchedState) => {
+  watchedState.isValid = 'badConection'
+}
+  export {unValid, isValid, haveThisUrl, badConection}
