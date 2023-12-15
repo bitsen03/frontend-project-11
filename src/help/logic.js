@@ -18,30 +18,46 @@ const validationSchema = yup
       post: {
         links: [],
         titles: [],
+        description: [],
         urls: [],
+        useTitlesId: [],
       }
     }
  
+//
+// const checkSame = (arr, checkValue) => {
+//   return arr.every((el) => el !== checkValue);
+// };
 
-    const addPost = ([titles, links]) =>{
-      for (const title of titles) {
-        if (!items.post.titles.includes(title)) {
-          items.post.titles.push(title);
-        }
-     }
-     for (const link of links) {
-      if (!items.post.links.includes(link)) {
-        items.post.links.push(link);
-      }
-    }
-    }
 
-    const submitEveant = async (e, watchedState) => {
+
+const addPost = ([titles, links, description]) => {
+  const newTitles = Array.from(titles).map(title => title.textContent);
+  const newLinks = Array.from(links).map(link => link.textContent);
+  const newDescription = Array.from(description).map(des => des.textContent);
+
+  newTitles.forEach(newTitle => {
+    if (!items.post.titles.includes(newTitle)) {
+      items.post.titles.push(newTitle);
+    }
+  });
+
+  newLinks.forEach(newLink => {
+    if (!items.post.links.includes(newLink)) {
+      items.post.links.push(newLink);
+    }
+  });
+
+  newDescription.forEach(newDes => {
+    if (!items.post.description.includes(newDes)) {
+      items.post.description.push(newDes);
+    }
+  });
+};
+
+//
+    const submitEveant = async (watchedState) => {
       try {
-        if (e) {
-          e.preventDefault();
-        }
-    
         reset(items, watchedState);
         const url = items.input.value;
     
@@ -62,9 +78,13 @@ const validationSchema = yup
           badConection(watchedState);
           return;
         }
-    
-        const parserData = await parser(data);
-        addPost(parserData);
+        if (watchedState.isValid === "isValid"){
+          const parserData = await parser(data);
+          console.log(parserData)
+          addPost(parserData);
+        }
+      
+
         watchedState.someFlag = true;
       } catch (error) {
         console.error('Error:', error);
@@ -73,29 +93,32 @@ const validationSchema = yup
     };
     
 
-  const checkUpdateRss = async (urls, watchedState) => {
-    console.log('хотябы запускаеться')
-    urls.forEach(async url => {
-      await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}`)
-    .then(response => {
-      if (!response.ok) {  
+    //
+  const checkUpdateRss = async (items, watchedState) => {
+    // reset(items, watchedState);
+  for (const url of items.post.urls) {
+    try {
+      const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}`);
+      if (!response.ok) {
         throw new Error('Network response was not ok.');
       }
-      return response.json(); // Получаем JSON
-    }).then(data => {
-      parser(data)
-      .then(arrPost => {
-        if (arrPost[0].length !== items.post.titles.length){
-          console.log('все плохо')
-        } else {
-          console.log('все норм')
-        }
-      })
-    })
-    });
-    
-    setTimeout(() => checkUpdateRss(urls), 5000)
+
+      const data = await response.json();
+      const arrPost = await parser(data);
+
+      if (arrPost[0].length !== items.post.titles.length) {
+        addPost(arrPost);
+        render(watchedState, items);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
+
+  setTimeout(() => checkUpdateRss(items, watchedState), 5000);
+};
+
+  //
     const parser = async (data) => {
       const xmlText = data.contents;
       const parser = new DOMParser();
@@ -103,17 +126,18 @@ const validationSchema = yup
    
       const titles = xmlDoc.getElementsByTagName('title');
       const links = xmlDoc.getElementsByTagName('link');
+      const description = xmlDoc.getElementsByTagName('description');
 
-     return [titles, links]
+     return [titles, links, description]
     }
     
-    
+    //
     export default async () => {
     
       const state = {
         isValid: null,
         feed: new Set(),
-        someFlag: null,
+        someFlag: false,
       };
       
       const watchedState = onChange(state, () => {
@@ -125,8 +149,11 @@ const validationSchema = yup
       const form = document.querySelector('form');
     
    
-      form.addEventListener('submit', (e) => submitEveant(e, watchedState));
-      checkUpdateRss(items.post.urls, watchedState)
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        submitEveant(watchedState)
+      });
+      checkUpdateRss(items, watchedState)
     };
   
   
