@@ -61,16 +61,16 @@ const outPut = (items) => {
     li.appendChild(a);
     li.appendChild(button);
     newUl.appendChild(li);
-    items.post.useTitlesId.forEach(element => {
-      if (i === element){
-      const qwe = document.getElementById(element)
-      qwe.classList.remove('fw-bold');
-      qwe.classList.add('fw-normal', 'link-secondary');
-      }
-    });
+   
+    if (items.post.useTitlesId.some((el) => +el === i)) {
+      a.classList.remove("fw-bold")
+      a.classList.add("fw-normal", "link-secondary")
+    }   
+   
   }
 
   items.container.appendChild(newUl);
+  console.log(items.post.useTitlesId)
 };
 
 

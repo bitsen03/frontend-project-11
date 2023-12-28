@@ -4,7 +4,8 @@
   "description": "My webpack project",
   "main": "qwe.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development",
+    "test": "npx playwright test",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
@@ -23,6 +24,8 @@
     "yup": "^1.3.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.5",
     "autoprefixer": "^10.4.16",
     "css-loader": "^6.8.1",
     "eslint": "^8.54.0",
