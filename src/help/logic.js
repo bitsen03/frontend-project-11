@@ -24,13 +24,6 @@ const validationSchema = yup
       }
     }
  
-//
-// const checkSame = (arr, checkValue) => {
-//   return arr.every((el) => el !== checkValue);
-// };
-
-
-
 const addPost = ([titles, links, description]) => {
   const newTitles = Array.from(titles).map(title => title.textContent);
   const newLinks = Array.from(links).map(link => link.textContent);
@@ -73,7 +66,7 @@ const addPost = ([titles, links, description]) => {
         }
     
         const data = await response.json();
-    
+        console.log(data)
         if (data.contents === '') {
           badConection(watchedState);
           return;
@@ -92,10 +85,7 @@ const addPost = ([titles, links, description]) => {
       }
     };
     
-
-    //
   const checkUpdateRss = async (items, watchedState) => {
-    // reset(items, watchedState);
   for (const url of items.post.urls) {
     try {
       const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}`);
@@ -118,7 +108,6 @@ const addPost = ([titles, links, description]) => {
   setTimeout(() => checkUpdateRss(items, watchedState), 5000);
 };
 
-  //
     const parser = async (data) => {
       const xmlText = data.contents;
       const parser = new DOMParser();
@@ -131,7 +120,6 @@ const addPost = ([titles, links, description]) => {
      return [titles, links, description]
     }
     
-    //
     export default async () => {
     
       const state = {

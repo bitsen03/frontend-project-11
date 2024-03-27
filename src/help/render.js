@@ -41,9 +41,7 @@ const outPut = (items) => {
       const newA = document.getElementById(id); 
       newA.classList.remove('fw-bold');
       newA.classList.add('fw-normal', 'link-secondary');
-      items.post.useTitlesId.push(id)
-      // class="fw-normal link-secondary"
-      // class="fw-bold"
+      items.post.useTitlesId.push(id);
     })
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#modal');
