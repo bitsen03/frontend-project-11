@@ -6,7 +6,7 @@ export default async (dataToValidate, watchedState, validationSchema) => {
         haveThisUrl(watchedState);
         return; 
       }
-      await validationSchema.validate(dataToValidate);    
+      const validData = await validationSchema.validate(dataToValidate);    
       watchedState.feed.add(dataToValidate);
       isValid(watchedState);
     } catch (validationErrors) {
