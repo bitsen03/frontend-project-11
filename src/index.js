@@ -2,4 +2,5 @@ import  './styles.scss';
 import  'bootstrap';
 import logic from './help/logic.js';
 
-logic()
+logic();
+console.log('hello')
