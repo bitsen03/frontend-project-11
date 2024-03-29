@@ -68,20 +68,15 @@ const queryString = `disableCache=${'true'}`;
         const data = await response.json();
         if ((data.status.http_code === 404 || data.contents === null) && watchedState.isValid !== 'unValid') {
           badConection(watchedState); 
-          // render(watchedState, items)
-          watchedState.someFlag = true;
-          return;
         }
         if (watchedState.isValid === "isValid"){
           const parserData = await parser(data);
           addPost(parserData);
         }
-      
 
         watchedState.someFlag = true;
       } catch (error) {
         console.error('Error:', error);
-        watchedState.someFlag = true;
       }
     };
     
