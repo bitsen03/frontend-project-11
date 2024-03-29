@@ -53,19 +53,14 @@ const addPost = ([titles, links, description]) => {
       try {
         reset(items, watchedState);
         const url = items.input.value;
-        if (url.includes('disableCache')) {
-          console.log('URL содержит параметр "disableCache"');
-      } else {
-          console.log('URL не содержит параметр "disableCache"');
-      }
       
         if (!items.post.urls.includes(url)) {
           items.post.urls.push(url);
         }
     
         await validate(url, watchedState, validationSchema);
-    
-        const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}`);
+        const queryString = `disableCache=${'true'}`;
+        const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
         console.log(response)
         if (!response.ok) {
           throw new Error('Network response was not ok.');
