@@ -73,7 +73,6 @@ const outPut = (items) => {
 
 export default async (state, items) => {
     const item = items.feedback;
-    console.log(state.isValid)
     resetStyle(item);
       if (state.isValid === 'isValid') {   
         outPut(items)

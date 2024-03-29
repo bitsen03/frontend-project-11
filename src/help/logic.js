@@ -53,7 +53,12 @@ const addPost = ([titles, links, description]) => {
       try {
         reset(items, watchedState);
         const url = items.input.value;
-    
+        if (url.includes('disableCache')) {
+          console.log('URL содержит параметр "disableCache"');
+      } else {
+          console.log('URL не содержит параметр "disableCache"');
+      }
+      
         if (!items.post.urls.includes(url)) {
           items.post.urls.push(url);
         }
@@ -61,12 +66,14 @@ const addPost = ([titles, links, description]) => {
         await validate(url, watchedState, validationSchema);
     
         const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}`);
+        console.log(response)
         if (!response.ok) {
           throw new Error('Network response was not ok.');
         }
         const data = await response.json();
-        if (data.contents === '') {
-          badConection(watchedState);
+        console.log(data)
+        if (data.status.http_code === 404 || data.contents === null) {
+          badConection(watchedState); 
           render(watchedState, items)
           return;
         }
