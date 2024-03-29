@@ -66,7 +66,6 @@ const outPut = (items) => {
     }   
    
   }
-
   items.container.appendChild(newUl);
 };
 

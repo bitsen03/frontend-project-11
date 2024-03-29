@@ -71,8 +71,9 @@ const addPost = ([titles, links, description]) => {
           throw new Error('Network response was not ok.');
         }
         const data = await response.json();
+        console.log(watchedState.isValid)
         console.log(data)
-        if (data.status.http_code === 404 || data.contents === null) {
+        if ((data.status.http_code === 404 || data.contents === null) && watchedState.isValid !== 'unValid') {
           badConection(watchedState); 
           render(watchedState, items)
           return;
