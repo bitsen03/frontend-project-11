@@ -64,16 +64,14 @@ const addPost = ([titles, links, description]) => {
         if (!response.ok) {
           throw new Error('Network response was not ok.');
         }
-    
         const data = await response.json();
-        console.log(data)
         if (data.contents === '') {
           badConection(watchedState);
+          render(watchedState, items)
           return;
         }
         if (watchedState.isValid === "isValid"){
           const parserData = await parser(data);
-          console.log(parserData)
           addPost(parserData);
         }
       

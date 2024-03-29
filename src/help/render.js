@@ -68,12 +68,12 @@ const outPut = (items) => {
   }
 
   items.container.appendChild(newUl);
-  console.log(items.post.useTitlesId)
 };
 
 
 export default async (state, items) => {
     const item = items.feedback;
+    console.log(state.isValid)
     resetStyle(item);
       if (state.isValid === 'isValid') {   
         outPut(items)

@@ -15,9 +15,6 @@ watchedState.isValid = 'haveThisUrl';
     
   }
 const badConection = (watchedState) => {
-  if (watchedState){
-watchedState.isValid = 'badConection'
-  }
-  
+    watchedState.isValid = 'badConection'
 }
   export {unValid, isValid, haveThisUrl, badConection}

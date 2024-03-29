@@ -6,11 +6,5 @@ const resetStyle = (item) => {
     if (watchedState) {
       watchedState.someFlag = false;
     }
-
-    // items.post = {
-    //   links: [],
-    //   titles: [],
-    // };
-
   } 
   export  { resetStyle, reset}
