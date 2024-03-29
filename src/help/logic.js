@@ -144,4 +144,3 @@ const addPost = ([titles, links, description]) => {
       checkUpdateRss(items, watchedState)
     };
   
-  
