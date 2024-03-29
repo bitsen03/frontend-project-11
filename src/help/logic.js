@@ -47,7 +47,7 @@ const addPost = ([titles, links, description]) => {
     }
   });
 };
-
+const queryString = `disableCache=${'true'}`;
 //
     const submitEveant = async (watchedState) => {
       try {
@@ -59,18 +59,17 @@ const addPost = ([titles, links, description]) => {
         }
     
         await validate(url, watchedState, validationSchema);
-        const queryString = `disableCache=${'true'}`;
+
         const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
         console.log(response)
         if (!response.ok) {
           throw new Error('Network response was not ok.');
         }
         const data = await response.json();
-        console.log(watchedState.isValid)
-        console.log(data)
         if ((data.status.http_code === 404 || data.contents === null) && watchedState.isValid !== 'unValid') {
           badConection(watchedState); 
-          render(watchedState, items)
+          // render(watchedState, items)
+          watchedState.someFlag = true;
           return;
         }
         if (watchedState.isValid === "isValid"){
@@ -89,7 +88,7 @@ const addPost = ([titles, links, description]) => {
   const checkUpdateRss = async (items, watchedState) => {
   for (const url of items.post.urls) {
     try {
-      const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}`);
+      const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
       if (!response.ok) {
         throw new Error('Network response was not ok.');
       }
