@@ -112,7 +112,7 @@ const queryString = `disableCache=${'true'}`;
       const links = xmlDoc.getElementsByTagName('link');
       const description = xmlDoc.getElementsByTagName('description');
 
-     return [titles, links, description]
+     return [titles, links, description];
     }
     
     export default async () => {
@@ -133,9 +133,9 @@ const queryString = `disableCache=${'true'}`;
     
    
       form.addEventListener('submit', (e) => {
-        e.preventDefault()
-        submitEveant(watchedState)
+        e.preventDefault();
+        submitEveant(watchedState);
       });
-      checkUpdateRss(items, watchedState)
+      checkUpdateRss(items, watchedState);
     };
   
