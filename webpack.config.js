@@ -1,9 +1,17 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  resolve: {
+    fallback: {
+      "stream": require.resolve("stream-browserify"),
+      "http": require.resolve("stream-http"),
+      "https": require.resolve("https-browserify"),
+      "url": require.resolve("url"),
+      "buffer": require.resolve("buffer"),
+      "timers": require.resolve("timers-browserify")
+    }
+  },
   mode: process.env.NODE_ENV || 'development',
   entry: './src/index.js',
   output: {
@@ -31,4 +39,5 @@ module.exports = {
       },
     ],
   },
+  
 };
