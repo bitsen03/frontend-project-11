@@ -66,7 +66,8 @@ const queryString = `disableCache=${'true'}`;
           throw new Error('Network response was not ok.');
         }
         const data = await response.json();
-        if ((data.status.http_code === 404 || data.contents === null) && watchedState.isValid !== 'unValid') {
+        console.log(data)
+        if ((data?.status?.http_code === 404 || data.contents === null) && watchedState.isValid !== 'unValid') {
           badConection(watchedState); 
         }
         if (watchedState.isValid === "isValid"){
