@@ -1,20 +1,25 @@
 const unValid = (watchedState) => {
-    if (watchedState){
-      watchedState.isValid = 'unValid';}
-  };
-  const isValid = (watchedState) => {
-    if (watchedState){
-          watchedState.isValid = 'isValid';
-    }
+  if (watchedState){
+    watchedState.isValid = 'unValid';}
+};
 
-  };
-  const haveThisUrl = (watchedState) => {
-    if (watchedState){
-watchedState.isValid = 'haveThisUrl';
-    }
-    
+const isValid = (watchedState) => {
+  if (watchedState){
+    watchedState.isValid = 'isValid';
   }
-const badConection = (watchedState) => {
-    watchedState.isValid = 'badConection'
+};
+
+const haveThisUrl = (watchedState) => {
+  if (watchedState){
+  watchedState.isValid = 'haveThisUrl';
+}  
 }
-  export {unValid, isValid, haveThisUrl, badConection}
+
+const badConection = (watchedState) => {
+  watchedState.isValid = 'badConection'
+}
+
+const networkError = (watchedState) => {
+  watchedState.isValid = 'networkError'
+}
+export {unValid, isValid, haveThisUrl, badConection,networkError }

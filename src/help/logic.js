@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import onChange from 'on-change';
 import render from './render.js';
 import validate from './validate.js'
-import { badConection } from './view.js';
+import { badConection, networkError } from './view.js';
 import {reset} from './reset.js';
 
 const validationSchema = yup
@@ -55,29 +55,28 @@ const queryString = `disableCache=${'true'}`;
         reset(items, watchedState);
         const url = items.input.value;
 
-        if (!items.post.urls.includes(url)) {
-          items.post.urls.push(url);
-        }
-    
         await validate(url, watchedState, validationSchema);
-
+      
         const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok.');
-        }
-        const data = await response.json();
-        const parserData =  parser(data);
-        
 
+        const data = await response.json();
+        const parserData = await parser(data);
+        
         if (watchedState.isValid === "isValid"){
-          if (parserData.some((el)=> el.length === 0)) {
-            badConection(watchedState);
-            return;
+          if (parserData.some((el) => el.length === 0)) {
+            badConection(watchedState)
+          watchedState.someFlag = true;
+          return;
+        }
+          if (!items.post.urls.includes(url)) {
+            items.post.urls.push(url);
           }
           addPost(parserData);
         }
+
         watchedState.someFlag = true;
       } catch (error) {
+        networkError(watchedState);
         console.error('Error:', error);
       }
     };
@@ -86,12 +85,9 @@ const queryString = `disableCache=${'true'}`;
   for (const url of items.post.urls) {
     try {
       const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok.');
-      }
 
       const data = await response.json();
-      const arrPost = parser(data);
+      const arrPost = await parser(data);
 
       if (arrPost[0].length !== items.post.titles.length) {
         addPost(arrPost);
@@ -105,7 +101,7 @@ const queryString = `disableCache=${'true'}`;
   setTimeout(() => checkUpdateRss(items, watchedState), 5000);
 };
 
-    const parser = (data) => {
+    const parser = async (data) => {
       const xmlText = data.contents;
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
