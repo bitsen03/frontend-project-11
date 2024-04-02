@@ -56,14 +56,15 @@ const queryString = `disableCache=${'true'}`;
         const url = items.input.value;
 
         await validate(url, watchedState, validationSchema);
-      
-        const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
 
+        const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`, { timeout: 5000 })
+        
         const data = await response.json();
         const parserData = await parser(data);
-        
+        console.log('1')
         if (watchedState.isValid === "isValid"){
           if (parserData.some((el) => el.length === 0)) {
+            console.log('2')
             badConection(watchedState)
           watchedState.someFlag = true;
           return;
@@ -71,12 +72,14 @@ const queryString = `disableCache=${'true'}`;
           if (!items.post.urls.includes(url)) {
             items.post.urls.push(url);
           }
+          console.log('3')
           addPost(parserData);
         }
-
         watchedState.someFlag = true;
       } catch (error) {
+        console.log('4')
         networkError(watchedState);
+        watchedState.someFlag = true;
         console.error('Error:', error);
       }
     };
