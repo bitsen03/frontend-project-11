@@ -5,6 +5,7 @@ import validate from './validate.js'
 import { badConection, networkError } from './view.js';
 import {reset} from './reset.js';
 
+
 const validationSchema = yup
   .string()
   .url('Введите правильный URL')
@@ -14,26 +15,43 @@ const validationSchema = yup
       input: document.querySelector('#url-input'),
       feedback: document.querySelector('.feedback'),
       example: document.querySelector('p > .mt-2 mb-0'),
-      container: document.querySelector('.container-xxl'),
+      container: document.querySelector('.posts'),
+      feeds: document.querySelector('.feeds'),
+
       post: {
         links: [],
         titles: [],
         description: [],
+        mainTitle: [],
         urls: [],
         useTitlesId: [],
+        mainDescription: [],
       }
     }
  
-const addPost = ([titles, links, description]) => {
+const addPost = ([titles, links, description, mainTitle, mainDescription]) => {
   const newTitles = Array.from(titles).map(title => title.textContent);
   const newLinks = Array.from(links).map(link => link.textContent);
   const newDescription = Array.from(description).map(des => des.textContent);
+  const newMainTitles = Array.from([mainTitle]).map(mainT => mainT.textContent);
+  const newMainDescription = Array.from([mainDescription]).map(mainD => mainD.textContent);
 
   newTitles.forEach(newTitle => {
     if (!items.post.titles.includes(newTitle)) {
       items.post.titles.push(newTitle);
     }
   });
+
+  newMainTitles.forEach(newMainTitle => {
+    if (!items.post.mainTitle.includes(newMainTitle)) {
+      items.post.mainTitle.push(newMainTitle);
+    }
+  })
+  newMainDescription.forEach(el => {
+    if (!items.post.mainDescription.includes(el)) {
+      items.post.mainDescription.push(el);
+    }
+  })
 
   newLinks.forEach(newLink => {
     if (!items.post.links.includes(newLink)) {
@@ -61,10 +79,8 @@ const queryString = `disableCache=${'true'}`;
         
         const data = await response.json();
         const parserData = await parser(data);
-        console.log('1')
         if (watchedState.isValid === "isValid"){
           if (parserData.some((el) => el.length === 0)) {
-            console.log('2')
             badConection(watchedState)
           watchedState.someFlag = true;
           return;
@@ -72,12 +88,10 @@ const queryString = `disableCache=${'true'}`;
           if (!items.post.urls.includes(url)) {
             items.post.urls.push(url);
           }
-          console.log('3')
           addPost(parserData);
         }
         watchedState.someFlag = true;
       } catch (error) {
-        console.log('4')
         networkError(watchedState);
         watchedState.someFlag = true;
         console.error('Error:', error);
@@ -108,12 +122,13 @@ const queryString = `disableCache=${'true'}`;
       const xmlText = data.contents;
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
-   
-      const titles = xmlDoc.getElementsByTagName('title');
-      const links = xmlDoc.getElementsByTagName('link');
-      const description = xmlDoc.getElementsByTagName('description');
-
-     return [titles, links, description];
+      const mainTitle = xmlDoc.querySelector('title');
+      const titles = xmlDoc.querySelectorAll('item>title');
+      const links = xmlDoc.querySelectorAll('item>link');
+      const description = xmlDoc.querySelectorAll('item>description');
+      const mainDescription = xmlDoc.querySelector('description');
+      console.log(mainDescription)
+     return [titles, links, description, mainTitle, mainDescription];
     }
     
     export default async () => {

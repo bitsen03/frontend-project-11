@@ -10,15 +10,58 @@ await i18nextInstance.init({
   text,
 });
 
+// class="col-md-10 col-lg-4 mx-auto order-0 order-lg-1 feeds"
+// card border-0
+// card-title h4
+const feeds = (mainTitle, mainDescription) => {
+  const divCard = document.createElement('div')
+  divCard.classList.add('card-body')
+
+  const h2 = document.createElement('h2');
+  h2.classList.add("card", "border-0");
+  h2.textContent = 'Фиды';
+
+  divCard.appendChild(h2)
+  const newUl = document.createElement('ul');
+  newUl.classList.add("list-group", "border-0", "rounded-0")
+  console.log(mainTitle)
+  mainTitle.forEach((title, indx) => {
+    const li = document.createElement('li');
+    li.classList.add("list-group-item", "border-0", "border-end-0")
+    const h3 = document.createElement('h3')
+    h3.classList.add('h6', 'm-0')
+    h3.textContent = title;
+    const p = document.createElement('p')
+    p.classList.add("m-0", "small", "text-black-50")
+    p.textContent = mainDescription[indx];
+    li.appendChild(h3)
+    li.appendChild(p)
+    newUl.appendChild(li)
+  });
+
+  const card = document.createElement("div")
+  card.classList.add("card", "borser-0")
+
+  card.appendChild(divCard)
+  card.appendChild(newUl)
+  return card
+} 
 
 const outPut = (items) => {
-  const titles = items.post.titles;
-  const links = items.post.links;
-  const description = items.post.description
+  const {titles, links, description, mainTitle, mainDescription} = items.post
+  console.log(mainDescription)
   items.container.innerHTML = '';
-
+  items.feeds.innerHTML ='';
   const newUl = document.createElement('ul');
   newUl.classList.add("list-group", "border-0", "rounded-0");
+  const post = document.createElement('div');
+const cardTitle = document.createElement('h2');
+
+cardTitle.classList.add("card-title", "h4");
+post.classList.add("card-body");
+cardTitle.textContent = 'Посты';
+
+post.appendChild(cardTitle);
 
   for (let i = 0; i < titles.length; i += 1) {
     const li = document.createElement('li');
@@ -66,7 +109,14 @@ const outPut = (items) => {
     }   
    
   }
-  items.container.appendChild(newUl);
+  const card = document.createElement("div")
+  card.classList.add("card", "borser-0")
+  card.appendChild(post)
+  card.appendChild(newUl);
+
+  const feedsBlock = feeds(mainTitle, mainDescription);
+  items.feeds.appendChild(feedsBlock) 
+  items.container.appendChild(card);
 };
 
 
