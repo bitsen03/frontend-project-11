@@ -66,13 +66,14 @@ const queryString = `disableCache=${'true'}`;
           throw new Error('Network response was not ok.');
         }
         const data = await response.json();
-        const parserData = await parser(data);
+        const parserData =  parser(data);
         
-        if (parserData.some((el)=> el.length === 0)) {
-          badConection(watchedState); 
-        }
+
         if (watchedState.isValid === "isValid"){
-          const parserData = await parser(data);
+          if (parserData.some((el)=> el.length === 0)) {
+            badConection(watchedState);
+            return;
+          }
           addPost(parserData);
         }
         watchedState.someFlag = true;
@@ -90,7 +91,7 @@ const queryString = `disableCache=${'true'}`;
       }
 
       const data = await response.json();
-      const arrPost = await parser(data);
+      const arrPost = parser(data);
 
       if (arrPost[0].length !== items.post.titles.length) {
         addPost(arrPost);
@@ -104,7 +105,7 @@ const queryString = `disableCache=${'true'}`;
   setTimeout(() => checkUpdateRss(items, watchedState), 5000);
 };
 
-    const parser = async (data) => {
+    const parser = (data) => {
       const xmlText = data.contents;
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
