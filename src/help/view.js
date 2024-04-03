@@ -11,15 +11,15 @@ const isValid = (watchedState) => {
 
 const haveThisUrl = (watchedState) => {
   if (watchedState){
-  watchedState.isValid = 'haveThisUrl';
-}  
-}
+    watchedState.isValid = 'haveThisUrl';
+  }
+};
 
 const badConection = (watchedState) => {
-  watchedState.isValid = 'badConection'
-}
+  watchedState.isValid = 'badConection';
+};
 
 const networkError = (watchedState) => {
-  watchedState.isValid = 'networkError'
-}
-export {unValid, isValid, haveThisUrl, badConection,networkError }
+  watchedState.isValid = 'networkError';
+};
+export {unValid, isValid, haveThisUrl, badConection,networkError };
