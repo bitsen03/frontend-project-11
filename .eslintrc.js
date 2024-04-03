@@ -19,10 +19,12 @@ module.exports = {
     'no-undef': 'error',
     'camelcase': 'error',
     'no-extra-semi': 'error',
-    'no-multiple-empty-lines': ['error', { 'max': 2 }],
     'eqeqeq': 'error',
     'no-trailing-spaces': 'error',
     'arrow-spacing': ['error', { 'before': true, 'after': true }],
     'no-var': 'error',
+    'object-curly-spacing': ['error', 'always'],
+    'no-multiple-empty-lines': ['error', { 'max': 1 }],
+    'arrow-parens': ['error', 'always'],
   },
 };

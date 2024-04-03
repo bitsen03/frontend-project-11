@@ -22,4 +22,4 @@ const badConection = (watchedState) => {
 const networkError = (watchedState) => {
   watchedState.isValid = 'networkError';
 };
-export {unValid, isValid, haveThisUrl, badConection,networkError };
+export { unValid, isValid, haveThisUrl, badConection,networkError };

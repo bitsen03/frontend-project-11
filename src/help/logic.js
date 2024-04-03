@@ -3,8 +3,7 @@ import onChange from 'on-change';
 import render from './render.js';
 import validate from './validate.js';
 import { badConection, networkError } from './view.js';
-import {reset} from './reset.js';
-
+import { reset } from './reset.js';
 
 const validationSchema = yup
   .string()
@@ -29,43 +28,54 @@ const items =  {
   },
 };
 
-const addPost = ([titles, links, description, mainTitle, mainDescription]) => {
-  const newTitles = Array.from(titles).map(title => title.textContent);
-  const newLinks = Array.from(links).map(link => link.textContent);
-  const newDescription = Array.from(description).map(des => des.textContent);
-  const newMainTitles = Array.from([mainTitle]).map(mainT => mainT.textContent);
-  const newMainDescription = Array.from([mainDescription]).map(mainD => mainD.textContent);
+const parser = async (data) => {
+  const xmlText = data.contents;
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+  const mainTitle = xmlDoc.querySelector('title');
+  const titles = xmlDoc.querySelectorAll('item>title');
+  const links = xmlDoc.querySelectorAll('item>link');
+  const description = xmlDoc.querySelectorAll('item>description');
+  const mainDescription = xmlDoc.querySelector('description');
+  return [titles, links, description, mainTitle, mainDescription];
+};
 
-  newTitles.forEach(newTitle => {
+const addPost = ([titles, links, description, mainTitle, mainDescription]) => {
+  const newTitles = Array.from(titles).map((title) => title.textContent);
+  const newLinks = Array.from(links).map((link) => link.textContent);
+  const newDescription = Array.from(description).map((des) => des.textContent);
+  const newMainTitles = Array.from([mainTitle]).map((mainT) => mainT.textContent);
+  const newMainDescription = Array.from([mainDescription]).map((mainD) => mainD.textContent);
+
+  newTitles.forEach((newTitle) => {
     if (!items.post.titles.includes(newTitle)) {
       items.post.titles.push(newTitle);
     }
   });
 
-  newMainTitles.forEach(newMainTitle => {
+  newMainTitles.forEach((newMainTitle) => {
     if (!items.post.mainTitle.includes(newMainTitle)) {
       items.post.mainTitle.push(newMainTitle);
     }
   });
-  newMainDescription.forEach(el => {
+  newMainDescription.forEach((el) => {
     if (!items.post.mainDescription.includes(el)) {
       items.post.mainDescription.push(el);
     }
   });
 
-  newLinks.forEach(newLink => {
+  newLinks.forEach((newLink) => {
     if (!items.post.links.includes(newLink)) {
       items.post.links.push(newLink);
     }
   });
 
-  newDescription.forEach(newDes => {
+  newDescription.forEach((newDes) => {
     if (!items.post.description.includes(newDes)) {
       items.post.description.push(newDes);
     }
   });
 };
-
 
 const queryString = `disableCache=${'true'}`;
 //
@@ -119,18 +129,6 @@ const checkUpdateRss = async (items, watchedState) => {
   }
 
   setTimeout(() => checkUpdateRss(items, watchedState), 5000);
-};
-
-const parser = async (data) => {
-  const xmlText = data.contents;
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
-  const mainTitle = xmlDoc.querySelector('title');
-  const titles = xmlDoc.querySelectorAll('item>title');
-  const links = xmlDoc.querySelectorAll('item>link');
-  const description = xmlDoc.querySelectorAll('item>description');
-  const mainDescription = xmlDoc.querySelector('description');
-  return [titles, links, description, mainTitle, mainDescription];
 };
 
 export default async () => {
