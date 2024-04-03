@@ -18,13 +18,12 @@ const feeds = (mainTitle, mainDescription) => {
   divCard.classList.add('card-body')
 
   const h2 = document.createElement('h2');
-  h2.classList.add("card", "border-0");
+  h2.classList.add("card-title", "h4");
   h2.textContent = 'Фиды';
 
   divCard.appendChild(h2)
   const newUl = document.createElement('ul');
   newUl.classList.add("list-group", "border-0", "rounded-0")
-  console.log(mainTitle)
   mainTitle.forEach((title, indx) => {
     const li = document.createElement('li');
     li.classList.add("list-group-item", "border-0", "border-end-0")
@@ -49,7 +48,6 @@ const feeds = (mainTitle, mainDescription) => {
 
 const outPut = (items) => {
   const {titles, links, description, mainTitle, mainDescription} = items.post
-  console.log(mainDescription)
   items.container.innerHTML = '';
   items.feeds.innerHTML ='';
   const newUl = document.createElement('ul');
