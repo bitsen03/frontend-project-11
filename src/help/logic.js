@@ -90,9 +90,6 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
   </channel>
 </rss>`
 
-
-
-
 const queryString = `disableCache=${'true'}`;
 //
     const submitEveant = async (watchedState) => {
@@ -105,7 +102,7 @@ const queryString = `disableCache=${'true'}`;
         const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`, { timeout: 5000 })
         
         const data = await response.json();
-        const parserData = await parser(xml);
+        const parserData = await parser(data);
         if (watchedState.isValid === "isValid"){
           if (parserData.some((el) => el.length === 0)) {
             badConection(watchedState)
@@ -131,7 +128,7 @@ const queryString = `disableCache=${'true'}`;
       const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
 
       const data = await response.json();
-      const arrPost = await parser(xml);
+      const arrPost = await parser(data);
 
       if (arrPost[0].length !== items.post.titles.length) {
         addPost(arrPost);
@@ -146,7 +143,7 @@ const queryString = `disableCache=${'true'}`;
 };
 
     const parser = async (data) => {
-      const xmlText = data;
+      const xmlText = data.contents;
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
       const mainTitle = xmlDoc.querySelector('title');
