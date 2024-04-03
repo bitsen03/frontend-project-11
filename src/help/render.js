@@ -70,12 +70,13 @@ post.appendChild(cardTitle);
     a.setAttribute('href', links[i]);
     a.setAttribute('target', '_blank');
     a.setAttribute('rel', 'noopener noreferrer');
+    a.setAttribute('data-id', i)
     a.classList.add("fw-bold");
-    a.id = i;
+  
   
 
     const button = document.createElement('button');
-    button.id = i;
+    button.setAttribute('data-id', i)
     button.addEventListener('click', (e) => {
       e.preventDefault();
       const id = e.target.id;
@@ -116,7 +117,6 @@ post.appendChild(cardTitle);
   items.feeds.appendChild(feedsBlock) 
   items.container.appendChild(card);
 };
-
 
 export default async (state, items) => {
     const item = items.feedback;

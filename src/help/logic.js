@@ -66,6 +66,33 @@ const addPost = ([titles, links, description, mainTitle, mainDescription]) => {
   });
 };
 
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Новые уроки на Хекслете</title>
+    <description>Практические уроки по программированию</description>
+    <link>https://ru.hexlet.io/</link>
+    <webMaster>info@hexlet.io</webMaster>
+    <item>
+      <title>Агрегация / Python: Деревья</title>
+      <guid isPermaLink="false">1790</guid>
+      <link>https://ru.hexlet.io/courses/python-trees/lessons/aggregation/theory_unit</link>
+      <description>Цель: Научиться извлекать из дерева необходимые данные</description>
+      <pubDate>Wed, 10 Jun 2020 03:49:36 -0400</pubDate>
+    </item>
+    <item>
+      <title>Traversal / Python: Деревья</title>
+      <guid isPermaLink="false">1788</guid>
+      <link>https://ru.hexlet.io/courses/python-trees/lessons/traversal/theory_unit</link>
+      <description>Цель: Познакомиться с понятием "обход дерева"</description>
+      <pubDate>Wed, 10 Jun 2020 03:49:25 -0400</pubDate>
+    </item>
+  </channel>
+</rss>`
+
+
+
+
 const queryString = `disableCache=${'true'}`;
 //
     const submitEveant = async (watchedState) => {
@@ -78,7 +105,7 @@ const queryString = `disableCache=${'true'}`;
         const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`, { timeout: 5000 })
         
         const data = await response.json();
-        const parserData = await parser(data);
+        const parserData = await parser(xml);
         if (watchedState.isValid === "isValid"){
           if (parserData.some((el) => el.length === 0)) {
             badConection(watchedState)
@@ -104,7 +131,7 @@ const queryString = `disableCache=${'true'}`;
       const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
 
       const data = await response.json();
-      const arrPost = await parser(data);
+      const arrPost = await parser(xml);
 
       if (arrPost[0].length !== items.post.titles.length) {
         addPost(arrPost);
@@ -119,7 +146,7 @@ const queryString = `disableCache=${'true'}`;
 };
 
     const parser = async (data) => {
-      const xmlText = data.contents;
+      const xmlText = data;
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
       const mainTitle = xmlDoc.querySelector('title');
@@ -127,7 +154,6 @@ const queryString = `disableCache=${'true'}`;
       const links = xmlDoc.querySelectorAll('item>link');
       const description = xmlDoc.querySelectorAll('item>description');
       const mainDescription = xmlDoc.querySelector('description');
-
      return [titles, links, description, mainTitle, mainDescription];
     }
     
