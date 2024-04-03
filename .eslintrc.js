@@ -12,7 +12,6 @@ module.exports = {
   'rules': {
     'indent': ['error', 2],
     'semi': ['error', 'always'],
-    'quotes': ['error', 'single'],
     'comma-dangle': ['error', 'always-multiline'],
     'no-unused-vars': 'error',
     'no-console': 'error',
@@ -26,5 +25,6 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     'no-multiple-empty-lines': ['error', { 'max': 1 }],
     'arrow-parens': ['error', 'always'],
+    'quotes': ['error', 'single'],
   },
 };

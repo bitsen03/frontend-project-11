@@ -1,4 +1,4 @@
-import {resetStyle} from "./reset.js";
+import { resetStyle } from "./reset.js";
 import i18n from 'i18next';
 import text from '../text.js';
 
@@ -52,7 +52,8 @@ const feeds = (mainTitle, mainDescription) => {
 
 
 const outPut = (items) => {
-  const {titles, links, description, mainTitle, mainDescription} = items.post
+  const { titles, links, description, mainTitle, mainDescription } = items.post;
+  
   items.container.innerHTML = '';
   items.feeds.innerHTML ='';
   const newUl = document.createElement('ul');
