@@ -1,11 +1,11 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path'); // eslint-disable-line
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
 
-module.exports = {
-  mode: process.env.NODE_ENV || 'development',
+module.exports = { // eslint-disable-line
+  mode: process.env.NODE_ENV || 'development', // eslint-disable-line
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'), // eslint-disable-line
     filename: 'index_bundle.js',
   },
   devServer: {
