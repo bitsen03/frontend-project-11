@@ -6,7 +6,7 @@ export default async (urlToValidate, watchedState, ) => {
         haveThisUrl(watchedState);
         return; 
       } 
-      // const validData = await validationSchema.validate(urlToValidate); // eslint-disable-line
+      const validData = await validationSchema.validate(urlToValidate); // eslint-disable-line
       watchedState.feed.add(urlToValidate);
       isValid(watchedState);
     } catch (validationErrors) {
