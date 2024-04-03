@@ -4,7 +4,6 @@ import text from '../text.js';
 
 const i18nextInstance = i18n.createInstance();
 
-// eslint-disable-next-line
 await i18nextInstance.init({ 
   lng: 'ru', // Текущий язык
   debug: true,
