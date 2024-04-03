@@ -66,29 +66,6 @@ const addPost = ([titles, links, description, mainTitle, mainDescription]) => {
   });
 };
 
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-  <channel>
-    <title>Новые уроки на Хекслете</title>
-    <description>Практические уроки по программированию</description>
-    <link>https://ru.hexlet.io/</link>
-    <webMaster>info@hexlet.io</webMaster>
-    <item>
-      <title>Агрегация / Python: Деревья</title>
-      <guid isPermaLink="false">1790</guid>
-      <link>https://ru.hexlet.io/courses/python-trees/lessons/aggregation/theory_unit</link>
-      <description>Цель: Научиться извлекать из дерева необходимые данные</description>
-      <pubDate>Wed, 10 Jun 2020 03:49:36 -0400</pubDate>
-    </item>
-    <item>
-      <title>Traversal / Python: Деревья</title>
-      <guid isPermaLink="false">1788</guid>
-      <link>https://ru.hexlet.io/courses/python-trees/lessons/traversal/theory_unit</link>
-      <description>Цель: Познакомиться с понятием "обход дерева"</description>
-      <pubDate>Wed, 10 Jun 2020 03:49:25 -0400</pubDate>
-    </item>
-  </channel>
-</rss>`
 
 const queryString = `disableCache=${'true'}`;
 //
@@ -144,6 +121,7 @@ const queryString = `disableCache=${'true'}`;
 
     const parser = async (data) => {
       const xmlText = data.contents;
+      console.log(xmlText)
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
       const mainTitle = xmlDoc.querySelector('title');
@@ -178,3 +156,6 @@ const queryString = `disableCache=${'true'}`;
       checkUpdateRss(items, watchedState);
     };
   
+
+
+    // <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Lorem ipsum feed for an interval of 1 minutes with 10 item(s)]]></title><description><![CDATA[This is a constantly updating lorem ipsum feed]]></description><link>http://example.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 03 Apr 2024 10:15:23 GMT</lastBuildDate><pubDate>Wed, 03 Apr 2024 10:15:00 GMT</pubDate><copyright><![CDATA[Michael Bertolacci, licensed under a Creative Commons Attribution 3.0 Unported License.]]></copyright><ttl>1</ttl><item><title><![CDATA[Lorem ipsum 2024-04-03T10:15:00Z]]></title><description><![CDATA[Laborum ipsum cupidatat qui velit occaecat incididunt.]]></description><link>http://example.com/test/1712139300</link><guid isPermaLink="true">http://example.com/test/1712139300</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:15:00 GMT</pubDate></item><item><title><![CDATA[Lorem ipsum 2024-04-03T10:14:00Z]]></title><description><![CDATA[Officia id laboris do ad eu anim aliquip.]]></description><link>http://example.com/test/1712139240</link><guid isPermaLink="true">http://example.com/test/1712139240</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:14:00 GMT</pubDate></item><item><title><![CDATA[Lorem ipsum 2024-04-03T10:13:00Z]]></title><description><![CDATA[Duis irure laborum Lorem elit nostrud esse minim.]]></description><link>http://example.com/test/1712139180</link><guid isPermaLink="true">http://example.com/test/1712139180</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:13:00 GMT</pubDate></item><item><title><![CDATA[Lorem ipsum 2024-04-03T10:12:00Z]]></title><description><![CDATA[Exercitation velit voluptate occaecat enim pariatur irure nostrud est proident magna consectetur Lorem.]]></description><link>http://example.com/test/1712139120</link><guid isPermaLink="true">http://example.com/test/1712139120</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:12:00 GMT</pubDate></item><item><title><![CDATA[Lorem ipsum 2024-04-03T10:11:00Z]]></title><description><![CDATA[Fugiat amet tempor ut nulla incididunt velit pariatur et ullamco.]]></description><link>http://example.com/test/1712139060</link><guid isPermaLink="true">http://example.com/test/1712139060</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:11:00 GMT</pubDate></item><item><title><![CDATA[Lorem ipsum 2024-04-03T10:10:00Z]]></title><description><![CDATA[Mollit velit aliquip id nulla minim tempor commodo Lorem proident nostrud qui ut culpa exercitation.]]></description><link>http://example.com/test/1712139000</link><guid isPermaLink="true">http://example.com/test/1712139000</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:10:00 GMT</pubDate></item><item><title><![CDATA[Lorem ipsum 2024-04-03T10:09:00Z]]></title><description><![CDATA[Proident aliqua est id exercitation sint amet.]]></description><link>http://example.com/test/1712138940</link><guid isPermaLink="true">http://example.com/test/1712138940</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:09:00 GMT</pubDate></item><item><title><![CDATA[Lorem ipsum 2024-04-03T10:08:00Z]]></title><description><![CDATA[Quis Lorem sunt dolor cupidatat voluptate pariatur esse veniam ipsum fugiat.]]></description><link>http://example.com/test/1712138880</link><guid isPermaLink="true">http://example.com/test/1712138880</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:08:00 GMT</pubDate></item><item><title><![CDATA[Lorem ipsum 2024-04-03T10:07:00Z]]></title><description><![CDATA[Ipsum pariatur eu cillum ipsum.]]></description><link>http://example.com/test/1712138820</link><guid isPermaLink="true">http://example.com/test/1712138820</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:07:00 GMT</pubDate></item><item><title><![CDATA[Lorem ipsum 2024-04-03T10:06:00Z]]></title><description><![CDATA[Et laboris pariatur pariatur dolor dolore velit ea magna elit incididunt est nostrud quis anim.]]></description><link>http://example.com/test/1712138760</link><guid isPermaLink="true">http://example.com/test/1712138760</guid><dc:creator><![CDATA[John Smith]]></dc:creator><pubDate>Wed, 03 Apr 2024 10:06:00 GMT</pubDate></item></channel></rss>

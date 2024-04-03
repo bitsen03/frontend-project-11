@@ -10,9 +10,13 @@ await i18nextInstance.init({
   text,
 });
 
-// class="col-md-10 col-lg-4 mx-auto order-0 order-lg-1 feeds"
-// card border-0
-// card-title h4
+const changeModaltitle = (i, titles, description) => {
+  const modalElement = document.querySelector('.modal-title');
+  modalElement.textContent = titles[i];
+  const modalDescription = document.querySelector('.modal-body');
+  modalDescription.textContent = description[i]
+}
+
 const feeds = (mainTitle, mainDescription) => {
   const divCard = document.createElement('div')
   divCard.classList.add('card-body')
@@ -46,6 +50,7 @@ const feeds = (mainTitle, mainDescription) => {
   return card
 } 
 
+
 const outPut = (items) => {
   const {titles, links, description, mainTitle, mainDescription} = items.post
   items.container.innerHTML = '';
@@ -54,7 +59,6 @@ const outPut = (items) => {
   newUl.classList.add("list-group", "border-0", "rounded-0");
   const post = document.createElement('div');
 const cardTitle = document.createElement('h2');
-
 cardTitle.classList.add("card-title", "h4");
 post.classList.add("card-body");
 cardTitle.textContent = 'Посты';
@@ -79,25 +83,23 @@ post.appendChild(cardTitle);
     button.setAttribute('data-id', i)
     button.addEventListener('click', (e) => {
       e.preventDefault();
-      const id = e.target.id;
-      const newA = document.getElementById(id); 
+      const id = e.target.getAttribute('data-id');
+      const newA = document.querySelector(`[data-id="${id}"]`); 
       newA.classList.remove('fw-bold');
       newA.classList.add('fw-normal', 'link-secondary');
       items.post.useTitlesId.push(id);
+      changeModaltitle(i, titles, description)
     })
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#modal');
     button.classList.add("btn", "btn-outline-primary", "btn-sm");
     button.textContent = 'Просмотр';
 
-    const modalElement = document.querySelector('.modal-header');
-    modalElement.textContent = titles[i];
+
 
     const modalButton = document.querySelector('.modal-footer > a');
     modalButton.setAttribute('href', links[i]);
   
-    const modalDescription = document.querySelector('.modal-body');
-    modalDescription.textContent = description[i]
     li.appendChild(a);
     li.appendChild(button);
     newUl.appendChild(li);
