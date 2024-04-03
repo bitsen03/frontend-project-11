@@ -1,6 +1,6 @@
 import { isValid, unValid, haveThisUrl } from './view.js';
 
-export default async (urlToValidate, watchedState, ) => {
+export default async (urlToValidate, watchedState, validationSchema) => {// eslint-disable-line
     try {
       if (watchedState.feed.has(urlToValidate)) {
         haveThisUrl(watchedState);
