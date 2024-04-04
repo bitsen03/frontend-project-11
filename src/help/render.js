@@ -51,13 +51,13 @@ const feeds = (mainTitle, mainDescription) => {
 };
 
 const outPut = (items) => {
-  const { 
-    titles, 
-    links, 
-    description, 
-    mainTitle, 
-    mainDescription 
-    } = items.post;
+  const {
+    titles,
+    links,
+    description,
+    mainTitle,
+    mainDescription
+  } = items.post;
 
   items.container.innerHTML = '';
   items.feeds.innerHTML = '';
@@ -106,29 +106,29 @@ const outPut = (items) => {
     if (items.post.useTitlesId.some((el) => +el === i)) {
       a.classList.remove('fw-bold');
       a.classList.add('fw-normal', 'link-secondary');
-    }   
-  };
+    }
+  }
   const card = document.createElement('div');
   card.classList.add('card', 'borser-0');
   card.appendChild(post);
   card.appendChild(newUl);
   const feedsBlock = feeds(mainTitle, mainDescription);
-  items.feeds.appendChild(feedsBlock); 
+  items.feeds.appendChild(feedsBlock);
   items.container.appendChild(card);
 };
 
 export default async (state, items) => {
-    const item = items.feedback;
-    resetStyle(item);
-      if (state.isValid === 'isValid') {   
-        outPut(items);
-        item.classList.add('text-success');
-        items.input.classList.remove('is-invalid');
-        items.input.value = '';
-        items.input.focus();
-      } else {
-        item.classList.add('text-danger');
-        items.input.classList.add('is-invalid');
-      }
-      item.textContent = `${i18nextInstance.t(text[state.isValid])}`;
-    };
+  const item = items.feedback;
+  resetStyle(item);
+  if (state.isValid === 'isValid') {   
+    outPut(items);
+    item.classList.add('text-success');
+    items.input.classList.remove('is-invalid');
+    items.input.value = '';
+    items.input.focus();
+  } else {
+    item.classList.add('text-danger');
+    items.input.classList.add('is-invalid');
+  }
+  item.textContent = `${i18nextInstance.t(text[state.isValid])}`;
+};
