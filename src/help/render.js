@@ -56,7 +56,7 @@ const outPut = (items) => {
     links,
     description,
     mainTitle,
-    mainDescription
+    mainDescription,
   } = items.post;
 
   items.container.innerHTML = '';
@@ -120,7 +120,7 @@ const outPut = (items) => {
 export default async (state, items) => {
   const item = items.feedback;
   resetStyle(item);
-  if (state.isValid === 'isValid') {   
+  if (state.isValid === 'isValid') {
     outPut(items);
     item.classList.add('text-success');
     items.input.classList.remove('is-invalid');
