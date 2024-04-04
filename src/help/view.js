@@ -25,5 +25,5 @@ const networkError = (watchedState) => {
 };
 
 export {
-   unValid, isValid, haveThisUrl, badConection, networkError 
-  };
+  unValid, isValid, haveThisUrl, badConection, networkError,
+};

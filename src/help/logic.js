@@ -119,7 +119,7 @@ const checkUpdateRss = async (posts, watchedState) => {
         const data = await response.json();
       // eslint-disable-next-line
         const arrPost = await parser(data);
-    if (arrPost[0].length !== posts.post.titles.length) {
+      if (arrPost[0].length !== posts.post.titles.length) {
         addPost(arrPost);
         render(watchedState, posts);
       }
