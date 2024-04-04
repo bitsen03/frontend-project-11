@@ -115,38 +115,34 @@ const checkUpdateRss = async (posts, watchedState) => {
     try {
     // eslint-disable-next-line
         const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
-    // eslint-disable-next-line
+      // eslint-disable-next-line
         const data = await response.json();
-    // eslint-disable-next-line
+      // eslint-disable-next-line
         const arrPost = await parser(data);
     if (arrPost[0].length !== posts.post.titles.length) {
-    addPost(arrPost);
-    render(watchedState, posts);
-    }
+        addPost(arrPost);
+        render(watchedState, posts);
+      }
     } catch (error) {
     // eslint-disable-next-line
         console.error('Error:', error);
     }
-});
-setTimeout(() => checkUpdateRss(posts, watchedState), 5000);
-}
+  });
+  setTimeout(() => checkUpdateRss(posts, watchedState), 5000);
+};
 
 export default async () => {
-
   const state = {
     isValid: null,
     feed: new Set(),
     someFlag: false,
   };
-
   const watchedState = onChange(state, () => {
     if (watchedState.someFlag) {
       render(watchedState, items);
     }
   });
-
   const form = document.querySelector('form');
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     submitEveant(watchedState);

@@ -51,7 +51,13 @@ const feeds = (mainTitle, mainDescription) => {
 };
 
 const outPut = (items) => {
-  const { titles, links, description, mainTitle, mainDescription } = items.post;
+  const { 
+    titles, 
+    links, 
+    description, 
+    mainTitle, 
+    mainDescription 
+    } = items.post;
 
   items.container.innerHTML = '';
   items.feeds.innerHTML = '';
@@ -81,12 +87,12 @@ const outPut = (items) => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
       const id = e.target.getAttribute('data-id');
-      const newA = document.querySelector(`[data-id="${id}"]`); 
+      const newA = document.querySelector(`[data-id="${id}"]`);
       newA.classList.remove('fw-bold');
       newA.classList.add('fw-normal', 'link-secondary');
       items.post.useTitlesId.push(id);
       changeModaltitle(i, titles, description);
-      })
+    });
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#modal');
     button.classList.add('btn', 'btn-outline-primary', 'btn-sm');
@@ -94,16 +100,14 @@ const outPut = (items) => {
 
     const modalButton = document.querySelector('.modal-footer > a');
     modalButton.setAttribute('href', links[i]);
-  
     li.appendChild(a);
     li.appendChild(button);
     newUl.appendChild(li);
-   
     if (items.post.useTitlesId.some((el) => +el === i)) {
       a.classList.remove('fw-bold');
       a.classList.add('fw-normal', 'link-secondary');
     }   
-  }
+  };
   const card = document.createElement('div');
   card.classList.add('card', 'borser-0');
   card.appendChild(post);
