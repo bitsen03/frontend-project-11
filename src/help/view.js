@@ -1,10 +1,11 @@
 const unValid = (watchedState) => {
-  if (watchedState){
-    watchedState.isValid = 'unValid';}
+  if (watchedState) {
+    watchedState.isValid = 'unValid';
+  }
 };
 
 const isValid = (watchedState) => {
-  if (watchedState){
+  if (watchedState) {
     watchedState.isValid = 'isValid';
   }
 };
@@ -22,4 +23,5 @@ const badConection = (watchedState) => {
 const networkError = (watchedState) => {
   watchedState.isValid = 'networkError';
 };
+
 export { unValid, isValid, haveThisUrl, badConection,networkError };

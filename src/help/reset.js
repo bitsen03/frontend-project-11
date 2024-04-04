@@ -7,4 +7,4 @@ const reset = (items, watchedState) => {
     watchedState.someFlag = false;
   }
 };
-export  { resetStyle, reset };
+export { resetStyle, reset };
