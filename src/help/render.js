@@ -48,10 +48,12 @@ const feeds = (mainTitle, mainDescription) => {
   card.appendChild(divCard);
   card.appendChild(newUl);
   return card;
-} 
+}; 
 
 const outPut = (items) => {
+
   const { titles, links, description, mainTitle, mainDescription } = items.post;
+
   items.container.innerHTML = '';
   items.feeds.innerHTML = '';
   const newUl = document.createElement('ul');
@@ -76,8 +78,6 @@ const outPut = (items) => {
     a.setAttribute('data-id', i);
     a.classList.add('fw-bold');
   
-  
-
     const button = document.createElement('button');
     button.setAttribute('data-id', i);
     button.addEventListener('click', (e) => {
@@ -94,8 +94,6 @@ const outPut = (items) => {
     button.classList.add('btn', 'btn-outline-primary', 'btn-sm');
     button.textContent = 'Просмотр';
 
-
-
     const modalButton = document.querySelector('.modal-footer > a');
     modalButton.setAttribute('href', links[i]);
   
@@ -107,13 +105,11 @@ const outPut = (items) => {
       a.classList.remove('fw-bold');
       a.classList.add('fw-normal', 'link-secondary');
     }   
-   
   }
   const card = document.createElement('div');
   card.classList.add('card', 'borser-0');
   card.appendChild(post);
   card.appendChild(newUl);
-
   const feedsBlock = feeds(mainTitle, mainDescription);
   items.feeds.appendChild(feedsBlock); 
   items.container.appendChild(card);

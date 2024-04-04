@@ -113,19 +113,18 @@ const submitEveant = async (watchedState) => {
 const checkUpdateRss = async (posts, watchedState) => {
   posts.post.urls.forEach(async (url) => {
     try {
-        // eslint-disable-next-line
+    // eslint-disable-next-line
         const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
-        // eslint-disable-next-line
+    // eslint-disable-next-line
         const data = await response.json();
-        // eslint-disable-next-line
+    // eslint-disable-next-line
         const arrPost = await parser(data);
-
-        if (arrPost[0].length !== posts.post.titles.length) {
-            addPost(arrPost);
-            render(watchedState, posts);
-        }
+    if (arrPost[0].length !== posts.post.titles.length) {
+    addPost(arrPost);
+    render(watchedState, posts);
+    }
     } catch (error) {
-        // eslint-disable-next-line
+    // eslint-disable-next-line
         console.error('Error:', error);
     }
 });
