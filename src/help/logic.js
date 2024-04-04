@@ -10,7 +10,7 @@ const validationSchema = yup
   .url('Введите правильный URL')
   .required('URL обязателен для заполнения');
 
-const items =  {
+const items = {
   input: document.querySelector('#url-input'),
   feedback: document.querySelector('.feedback'),
   example: document.querySelector('p > .mt-2 mb-0'),
@@ -30,8 +30,8 @@ const items =  {
 
 const parser = async (data) => {
   const xmlText = data.contents;
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+  const parser1 = new DOMParser();
+  const xmlDoc = parser1.parseFromString(xmlText, 'application/xml');
   const mainTitle = xmlDoc.querySelector('title');
   const titles = xmlDoc.querySelectorAll('item>title');
   const links = xmlDoc.querySelectorAll('item>link');
@@ -90,7 +90,7 @@ const submitEveant = async (watchedState) => {
 
     const data = await response.json();
     const parserData = await parser(data);
-    if (watchedState.isValid === 'isValid'){
+    if (watchedState.isValid === 'isValid') {
       if (parserData.some((el) => el.length === 0)) {
         badConection(watchedState);
         watchedState.someFlag = true;
@@ -110,25 +110,26 @@ const submitEveant = async (watchedState) => {
   }
 };
 
-const checkUpdateRss = async (items, watchedState) => {
-  for (const url of items.post.urls) {
+const checkUpdateRss = async (posts, watchedState) => {
+  for (const url of posts.post.urls) {
     try {
+       // eslint-disable-next-line
       const response = await fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&${queryString}`);
-
+       // eslint-disable-next-line
       const data = await response.json();
+       // eslint-disable-next-line
       const arrPost = await parser(data);
 
-      if (arrPost[0].length !== items.post.titles.length) {
+      if (arrPost[0].length !== posts.post.titles.length) {
         addPost(arrPost);
-        render(watchedState, items);
+        render(watchedState, posts);
       }
     } catch (error) {
       // eslint-disable-next-line
       console.error('Error:', error);
     }
   }
-
-  setTimeout(() => checkUpdateRss(items, watchedState), 5000);
+  setTimeout(() => checkUpdateRss(posts, watchedState), 5000);
 };
 
 export default async () => {
