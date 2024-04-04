@@ -4,7 +4,7 @@ import text from '../text.js';
 
 const i18nextInstance = i18n.createInstance();
 
-await i18nextInstance.init({ 
+await i18nextInstance.init({
   lng: 'ru', // Текущий язык
   debug: true,
   text,
@@ -48,10 +48,9 @@ const feeds = (mainTitle, mainDescription) => {
   card.appendChild(divCard);
   card.appendChild(newUl);
   return card;
-}; 
+};
 
 const outPut = (items) => {
-
   const { titles, links, description, mainTitle, mainDescription } = items.post;
 
   items.container.innerHTML = '';
@@ -77,7 +76,6 @@ const outPut = (items) => {
     a.setAttribute('rel', 'noopener noreferrer');
     a.setAttribute('data-id', i);
     a.classList.add('fw-bold');
-  
     const button = document.createElement('button');
     button.setAttribute('data-id', i);
     button.addEventListener('click', (e) => {
@@ -88,7 +86,7 @@ const outPut = (items) => {
       newA.classList.add('fw-normal', 'link-secondary');
       items.post.useTitlesId.push(id);
       changeModaltitle(i, titles, description);
-    })
+      })
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#modal');
     button.classList.add('btn', 'btn-outline-primary', 'btn-sm');
